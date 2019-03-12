@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+
+  test-mongo:
+    image: mongo
+    container_name: test-mongo
+    restart: always
+    ports:
+      - 27017:27017
+    # volumes:
+    #   - ../data/db:/tmp/data/db
+    #   - ../data/configdb:/tmp/data/configdb
+    # command: --dbpath /tmp/data/db
+
