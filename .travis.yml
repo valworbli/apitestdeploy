@@ -18,7 +18,7 @@ deploy:
   secret_access_key: $AWS_SECRET_ACCESS_KEY
   local_dir: dpl_cd_upload
   skip_cleanup: true
-  on: &2
+  on: 
     repo: valworbli/apitestdeploy
   bucket: $S3_DEV_API_BUCKET_NAME
 - provider: codedeploy
@@ -29,7 +29,11 @@ deploy:
   bundle_type: $AWS_SECRET_ACCESS_KEY
   application: $AWS_CODE_DEPLOY_APPLICATION
   deployment_group: $AWS_CODE_DEPLOY_DEPLOYMENT_GROUP
-  on: *2
+  on:
+    repo: valworbli/apitestdeploy
+  region: us-west-2
+  wait_until_deployed: true
 before_deploy:
+- zip -r latest *
 - mkdir -p dpl_cd_upload
-- mv $AWS_ACCESS_KEY_ID dpl_cd_upload/$AWS_ACCESS_KEY_ID
+- mv latest.zip dpl_cd_upload/latest.zip
