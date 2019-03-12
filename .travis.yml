@@ -18,6 +18,8 @@ deploy:
   access_key_id: $AWS_ACCESS_KEY_ID
   secret_access_key: $AWS_SECRET_ACCESS_KEY
   local_dir: dpl_cd_upload
+  key: latest.zip
+  bundle_type: zip
   skip_cleanup: true
   on: 
     repo: valworbli/apitestdeploy
@@ -27,8 +29,8 @@ deploy:
   access_key_id: $AWS_ACCESS_KEY_ID
   secret_access_key: $AWS_SECRET_ACCESS_KEY
   bucket: $S3_DEV_API_BUCKET_NAME
-  key: $AWS_ACCESS_KEY_ID
-  bundle_type: $AWS_SECRET_ACCESS_KEY
+  key: latest.zip
+  bundle_type: zip
   application: $AWS_CODE_DEPLOY_APPLICATION
   deployment_group: $AWS_CODE_DEPLOY_DEPLOYMENT_GROUP
   on:
