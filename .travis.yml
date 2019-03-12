@@ -5,11 +5,12 @@ services:
 - mongodb
 script:
 - npm run test
+before_install:
+- openssl enc -d -aes-256-cbc -nosalt -pass pass:${ENV_PASS} -in env.encoded -out .env
 deploy:
 - provider: s3
   access_key_id: $AWS_ACCESS_KEY_ID
-  secret_access_key: &1
-    secure: p6SkguJridEJmAfbpKwL5LEVphCRhhDpcNH7teYCj0WYuOrh21edxGjd9NsasnuqsXxeOjzTn7hCFB4jn6G02wEzoAjDgLrR/PI94kn5xAfpXDf/1CKQGLd0RTwGwjJ6XpVz63encc1jhDWnsa6JpndhqVE7dRQkqSPylTpTvi4lMr6fdH1b+yt6YzUKuzUmo6TP36njhKeH/Wv7MF23Uc0R+WJU1DLov1wSVPnLJcBFbg+K3tDU3bQiU8slVWjLDbgS7MAQLGZyHGXGQv5qzJmma9EVBVewmOKhAna94dcFL8uSZMCOJDDvcYMk7Tph/smk8kB9/B93iYGooOgRGuJgDQOYaTqHGeSukR5LSBnzIqcPbjdaIbyIseu0t3oZZQQfwRiYIUEuxNQC6f9Z5rlk77nWkctKSDQCWCGMB7oZKnSj4cYWdapsds3c3EUK3k2DzexzrfEjHthXz+weuOJCZKEwc0BHksZmlKfvvUy4wQlwLnJG6Zc76DUtG9YHionwEjrZfOjrKL9O/Yn2PDriKGwc51ECq3dq8aF24uzvklyQyy+1XO1pYvGnGX82odWUl5lTmDt/FkN7sLrQtUdtkwuacVE5LKqPBz0Bry+LVa5gURKGchbNJMfs6RemGY/5UWTFh/B5HMpbVojeNpD3nxSFsOeCbR25bj1LAtc=
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
   local_dir: dpl_cd_upload
   skip_cleanup: true
   on: &2
@@ -17,10 +18,10 @@ deploy:
   bucket: $S3_DEV_API_BUCKET_NAME
 - provider: codedeploy
   access_key_id: $AWS_ACCESS_KEY_ID
-  secret_access_key: *1
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
   bucket: $S3_DEV_API_BUCKET_NAME
   key: $AWS_ACCESS_KEY_ID
-  bundle_type: OdgWPyKripoldEVRrm3O9adzCODHeDR2x6ePfFVQ
+  bundle_type: $AWS_SECRET_ACCESS_KEY
   application: $AWS_CODE_DEPLOY_APPLICATION
   deployment_group: $AWS_CODE_DEPLOY_DEPLOYMENT_GROUP
   on: *2
