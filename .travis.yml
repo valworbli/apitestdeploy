@@ -6,7 +6,7 @@ services:
 script:
 - npm run test
 before_install:
-- openssl aes-256-cbc -d -pass pass:${ENV_PASS} -in env.encoded -out .env
+- openssl enc -aes-256-cbc -d -salt -in env.encoded -out .env -k ${ENV_PASS}
 deploy:
 - provider: s3
   access_key_id: $AWS_ACCESS_KEY_ID
