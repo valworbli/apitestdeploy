@@ -86,7 +86,8 @@ describe('## User', () => {
           .catch(done);
     });
 
-    it('should return 200 and data true', (done) => {
+    // eslint-disable-next-line max-len
+    it('uploads an image - should return 200 and data true', (done) => {
       request(app)
           .post('/api/v3/identity/image/')
           .set('Accept', 'application/json')
