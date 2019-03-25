@@ -107,7 +107,8 @@ describe('## User', () => {
           .catch(done);
     });
 
-    it('should return 200 and data true', (done) => {
+    // eslint-disable-next-line max-len
+    it('checks the upload results - should return 200 and data true', (done) => {
       request(app)
           .get(testUrl)
           .set('Accept', 'application/json')
@@ -122,7 +123,7 @@ describe('## User', () => {
           .catch(done);
     });
 
-    it('should return 200 and data true', (done) => {
+    it('uploads one image - should return 200 and data true', (done) => {
       Users.updateOne(
           {email: defUser.email},
           {$set: {'identity_images.uploaded_documents': [],
@@ -141,6 +142,22 @@ describe('## User', () => {
                 })
                 .catch(done);
           });
+    });
+
+    // eslint-disable-next-line max-len
+    it('verifies that only a selfie is uploaded - should return 200 and data true', (done) => {
+      request(app)
+          .get(testUrl)
+          .set('Accept', 'application/json')
+          .set('Authorization', `Bearer ${jwtToken}`)
+          .expect(HttpStatus.OK)
+          .then((res) => {
+            expect({data: true});
+            expect({completed: false});
+            expect({missingDocuments: ['identity']});
+            done();
+          })
+          .catch(done);
     });
 
     // eslint-disable-next-line max-len
