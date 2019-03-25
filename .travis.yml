@@ -5,6 +5,9 @@ os: linux
 dist: xenial
 services:
 - mongodb
+before_script:
+  - sleep 15
+  - mongoimport --jsonArray --db worbli --collection identity_documents --file documents.json
 script:
 - npm run test
 before_install:
