@@ -2,14 +2,42 @@ version: "3"
 
 services:
 
-  test-mongo:
-    image: mongo
-    container_name: test-mongo
+  portalbackend:
+    image: node:10
+    container_name: portalbackend
     restart: always
-    ports:
-      - 27017:27017
-    # volumes:
-    #   - ../data/db:/tmp/data/db
-    #   - ../data/configdb:/tmp/data/configdb
-    # command: --dbpath /tmp/data/db
+    volumes:
+      - .:/usr/src/app
+    # ports:
+    #   - '9020:9020'
+    # environment:
+      # API_PORT: 9020
+    working_dir: /usr/src/app
 
+  portalfrontend:
+    image: keymetrics/pm2:latest-alpine
+    container_name: portalfrontend
+    restart: always
+    links:
+      - portalbackend
+    volumes:
+      - ../portalV2FrontEnd:/home/node/app
+    ports:
+      - '8080:8080'
+    working_dir: /home/node/app
+    command:
+      sh -c "npm install && node_modules/.bin/polymer build && pm2-runtime start ecosystem.config.js"
+
+  portalbackend-nginx:
+    image: nginx
+    container_name: portalbackend-nginx
+    restart: always
+    links:
+      - portalbackend
+    ports:
+      - 9020:80
+      - 80:80
+      # - 443:443
+    volumes:
+      - ./conf:/etc/nginx/conf.d
+      # - /etc/ssl:/etc/ssl

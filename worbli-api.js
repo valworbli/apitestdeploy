@@ -13,7 +13,6 @@ mongoose.connection.on('error', () => {
 });
 
 app.listen(process.env.API_PORT, () => {
-  // eslint-disable-next-line no-console
   logger.info(`API started on port ${process.env.API_PORT}`);
 });
 

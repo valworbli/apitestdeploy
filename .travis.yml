@@ -12,7 +12,7 @@ before_install:
 #  export ENV_PASS=yOuR_PasS
 #  openssl enc -e -aes-256-cbc -md md5 -salt -pass env:ENV_PASS -in .env -out env.encoded
 # see https://askubuntu.com/questions/1067762/unable-to-decrypt-text-files-with-openssl-on-ubuntu-18-04
-- openssl aes-256-cbc -d -pass pass:${ENV_PASS} -in env.encoded -out .env
+- openssl aes-256-cbc -d -pass pass:${ENV_PASS} -in .env.enc -out .env
 deploy:
 - provider: s3
   access_key_id: $AWS_ACCESS_KEY_ID
