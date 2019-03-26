@@ -22,6 +22,7 @@ async function postImage(req, res) {
       user.identity_images.pushDocumentUnique(docName);
     });
 
+    // eslint-disable-next-line max-len
     if (user.identity_images && user.identity_images.country !== countryPrefix) {
       user.initIDImages(true);
     } else {
