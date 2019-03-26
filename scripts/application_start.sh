@@ -11,4 +11,4 @@ cd $MYPWD/..
 # systemctl restart docker
 # for dock in $(docker ps | awk '{print $1}' | grep -v CONTAINER); do docker stop $dock; done
 # ./docker-dev.sh -d
-bash -i -l -c '/home/ubuntu/portal/portalBackEnd/scripts/application_start.sh'
+bash -l -c '/home/ubuntu/portal/portalBackEnd/scripts/application_start.sh'
