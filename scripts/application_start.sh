@@ -8,7 +8,7 @@ MYPWD=${0:ZERO:MYLENGTH}
 
 cd $MYPWD/..
 
-systemctl start docker
+systemctl restart docker
 # for dock in $(docker ps | awk '{print $1}' | grep -v CONTAINER); do docker stop $dock; done
 # ./docker-dev.sh -d
 # bash -l -c '/home/ubuntu/portal/portalBackEnd/docker-dev.sh'
