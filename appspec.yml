@@ -4,7 +4,7 @@ os: linux
 
 files:
   - source: ./
-    destination: /usr/src/app
+    destination: /home/ubuntu/portal/portalBackEnd/
 
 hooks:
   # BeforeInstall:
