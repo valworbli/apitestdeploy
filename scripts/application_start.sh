@@ -12,4 +12,4 @@ cd $MYPWD
 # for dock in $(docker ps | awk '{print $1}' | grep -v CONTAINER); do docker stop $dock; done
 cd ../
 rm -fr node_modules
-su ubuntu -c 'docker-compose -f ../docker-compose.yml -f ../docker-compose.dev.yml up -d'
+su ubuntu -c 'docker-compose -f ./docker-compose.yml -f ./docker-compose.dev.yml up -d'
