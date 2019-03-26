@@ -8,6 +8,6 @@ MYPWD=${0:ZERO:MYLENGTH}
 
 cd $MYPWD/..
 
-# systemctl restart docker
+systemctl restart docker
 # for dock in $(docker ps | awk '{print $1}' | grep -v CONTAINER); do docker stop $dock; done
-./docker-dev.sh -d
+# ./docker-dev.sh -d
