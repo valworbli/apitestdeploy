@@ -12,6 +12,8 @@ async function postImage(req, res) {
     const {user} = req.worbliUser;
     let countryPrefix = undefined;
 
+    user.initIDImages();
+
     req.files.forEach((element) => {
       // get the country from the uploaded file.fieldname
       if (!countryPrefix) {
@@ -23,10 +25,9 @@ async function postImage(req, res) {
     });
 
     // eslint-disable-next-line max-len
-    if (user.identity_images && user.identity_images.country !== countryPrefix) {
+    if (user.identity_images && (user.identity_images.country !== countryPrefix)) {
       user.initIDImages(true);
     } else {
-      user.initIDImages();
       user.identity_images.completed = false;
     }
 
