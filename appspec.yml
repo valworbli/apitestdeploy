@@ -5,3 +5,21 @@ os: linux
 files:
   - source: ./
     destination: /usr/src/app
+
+hooks:
+  BeforeInstall:
+    - location: scripts/stop_docker.sh
+      timeout: 30
+      runas: root
+  # AfterInstall:
+  #   - location: scripts/change_permissions.sh
+  #     timeout: 300
+  #     runas: root
+  ApplicationStart:
+    - location: ./docker-dev.sh -d
+      timeout: 30
+      runas: root
+  # ApplicationStop:
+  #   - location: scripts/stop_server.sh
+  #     timeout: 300
+  #     runas: root
