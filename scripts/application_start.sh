@@ -6,10 +6,8 @@ let MYLENGTH=${#0}-${#MYNAME}
 ZERO=0
 MYPWD=${0:ZERO:MYLENGTH}
 
-cd $MYPWD
+cd $MYPWD/..
 
 # systemctl restart docker
 # for dock in $(docker ps | awk '{print $1}' | grep -v CONTAINER); do docker stop $dock; done
-cd ../
-rm -fr node_modules
-./docker-dev.sh
+./docker-dev.sh -d
