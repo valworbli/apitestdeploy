@@ -109,7 +109,7 @@ function postForgot(req, res) {
                 logger.info(
                     `Sent a FORGOT email to user ${user.email}, 
           receipt ID: ${receipt}`);
-                res.status(HttpStatus.OK).json( {data: true} );
+                res.status(HttpStatus.OK).json( {data: true, bozo: true} );
               }).catch((err) => {
                 logger.error(`FAILED to send a FORGOT email to
             ${user.email}: ${err}`);
