@@ -22,7 +22,7 @@ async function postImage(req, res) {
       user.identity_images.pushDocumentUnique(docName);
     });
 
-    if (user.identity_images.country !== countryPrefix) {
+    if (user.identity_images && user.identity_images.country !== countryPrefix) {
       user.initIDImages(true);
     } else {
       user.initIDImages();
