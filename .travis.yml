@@ -8,7 +8,7 @@ services:
 before_script:
   - sleep 10
   - mongoimport --jsonArray --db worbli --collection identity_documents --file documents.json
-  - echo '127.0.0.1   portalbackend-mongo' >> /etc/hosts
+  - sudo echo '127.0.0.1   portalbackend-mongo' >> /etc/hosts
 script:
 - npm run test
 before_install:
