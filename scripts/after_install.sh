@@ -8,5 +8,5 @@ MYPWD=${0:ZERO:MYLENGTH}
 cd $MYPWD/..
 
 for dock in $(docker ps | awk '{print $1}' | grep -v CONTAINER); do docker stop $dock; done
-chown -R ubuntu. /home/ubuntu/portal/portalBackEnd
-rm -fr /home/ubuntu/portal/portalBackEnd/node_modules
+rm -fr node_modules
+chown -R ubuntu. ./*

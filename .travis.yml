@@ -44,7 +44,8 @@ deploy:
   region: us-west-2
   wait_until_deployed: true
 before_deploy:
-- shopt -s dotglob && zip -rq latest *
-- mkdir -p dpl_cd_upload
-- mv latest.zip dpl_cd_upload/latest.zip
+  - rm -fr node_modules
+  - shopt -s dotglob && zip -rq latest *
+  - mkdir -p dpl_cd_upload
+  - mv latest.zip dpl_cd_upload/latest.zip
 
