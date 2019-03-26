@@ -16,10 +16,10 @@ hooks:
   #     timeout: 300
   #     runas: root
   ApplicationStart:
-    - location: docker-dev.sh -d
+    - location: scripts/application_start.sh
       timeout: 30
       runas: root
   ApplicationStop:
-    - location: scripts/stop_docker.sh
+    - location: scripts/application_stop.sh
       timeout: 300
       runas: root
