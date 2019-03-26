@@ -18,20 +18,20 @@ before_install:
 - openssl aes-256-cbc -d -pass pass:${ENV_PASS} -in .env.enc -out .env
 deploy:
 - provider: s3
-  access_key_id: $AWS_ACCESS_KEY_ID
-  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  access_key_id: $TRAVIS_AWS_ACCESS_KEY_ID
+  secret_access_key: $TRAVIS_AWS_SECRET_ACCESS_KEY
   local_dir: dpl_cd_upload
   key: latest.zip
   bundle_type: zip
   skip_cleanup: true
   on: 
     repo: valworbli/apitestdeploy
-  bucket: $S3_DEV_API_BUCKET_NAME
+  bucket: $TRAVIS_S3_DEV_API_BUCKET_NAME
   region: us-west-2
 - provider: codedeploy
-  access_key_id: $AWS_ACCESS_KEY_ID
-  secret_access_key: $AWS_SECRET_ACCESS_KEY
-  bucket: $S3_DEV_API_BUCKET_NAME
+  access_key_id: $TRAVIS_AWS_ACCESS_KEY_ID
+  secret_access_key: $TRAVIS_AWS_SECRET_ACCESS_KEY
+  bucket: $TRAVIS_S3_DEV_API_BUCKET_NAME
   key: latest.zip
   bundle_type: zip
   application: $AWS_CODE_DEPLOY_APPLICATION
@@ -41,6 +41,6 @@ deploy:
   region: us-west-2
   wait_until_deployed: true
 before_deploy:
-- zip -r latest *
+- zip -rq latest *
 - mkdir -p dpl_cd_upload
 - mv latest.zip dpl_cd_upload/latest.zip
