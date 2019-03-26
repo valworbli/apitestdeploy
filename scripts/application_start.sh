@@ -10,4 +10,4 @@ cd $MYPWD
 
 # systemctl restart docker
 # for dock in $(docker ps | awk '{print $1}' | grep -v CONTAINER); do docker stop $dock; done
-su ubuntu -c docker-compose -f ../docker-compose.yml -f ../docker-compose.dev.yml up -d
+su ubuntu -c 'docker-compose -f ../docker-compose.yml -f ../docker-compose.dev.yml up -d'
